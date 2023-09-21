@@ -12,7 +12,7 @@ class CityRepository {
         }
     }
 
-    async deleteCity({ cityId }) {
+    async deleteCity(cityId) {
         try {
             await City.destroy({
                 where: {
@@ -26,7 +26,7 @@ class CityRepository {
         }
     }
 
-    async updateCity(cityId, date) {//{name: "jaymeen"}
+    async updateCity(cityId, data) {//{name: "jaymeen"}
         try {
             //the below approach also works but will not return updated object
             //    if we are using Pg then returning: true can be used, else not 
@@ -43,17 +43,17 @@ class CityRepository {
             return city;
         } catch (error) {
             console.log("something went wrong in the repository layer");
-            throw (error);
+            throw {error};
         }
     }
 
     async getCity(cityId) {
         try {
-            const city = await city.findByPk(cityId);
+            const city = await City.findByPk(cityId);
             return city;
         } catch (error) {
             console.log("something went wrong in the repository layer");
-            throw (error);
+            throw {error};
         }
     }
 }
