@@ -1,17 +1,13 @@
 const { CityRepository } = require('../repository');
 const CityServices = require('../services/city-service');
 
-const cityService = new CityService();
-/***
- * POST 
- * data -> req.body
- * 
- */
+const cityService = new CityServices();
+
 const create = async (request, response) => {
     try {
-        const city = await cityServices.createCity(request.body);
+        const city = await cityService.createCity(request.body);
         return response.status(201).json({
-            data: City,
+            data: city,
             success: true,
             message: 'successfully created a city',
             err: {}
@@ -30,7 +26,7 @@ const create = async (request, response) => {
 // delete type -> /city/:id 
 const destroy = async (request, response) => {
     try {
-        const response = await cityServices.deleteCity(request.params.id);
+        const response = await cityService.deleteCity(request.params.id);
         return response.status(200).json({
             data: response,
             success: true,
@@ -52,7 +48,7 @@ const destroy = async (request, response) => {
 // Get -> /city/:id
 const get = async (request, response) => {
     try {
-        const response  = await cityServices.getCity(request.params.id);
+        const response  = await cityService.getCity(request.params.id);
         return response.status(201).json({
             data: response  ,
             success: true,
@@ -74,7 +70,7 @@ const get = async (request, response) => {
 //patch -> /city/:id ->re.body
 const update = async (request, response) => {
     try {
-        const response = await cityServices.updateCity(request.params.id);
+        const response = await cityService.updateCity(request.params.id);
         return response.status(200).json({
             data: response,
             success: true,
